@@ -5,23 +5,14 @@
 int fsize(FILE *f);
 int innum(char a);
 int inchar(char a);
-int main(int argc, char *argv[])
+int vigenere(char *arg[]);
+int vigenere(char *arg[])
 {
-	if(argc < 2)
-		printf("ERROR: Need to type a name of file which will be encrypted\n");
-	if(argc <= 2)
-		printf("ERROR: Need to type a name of file where the result will be written\n");
-	if(argc <= 3)
-		printf("ERROR: Need to type a name of file where the key will be\n");
-	if(argc <= 4)
-		printf("ERROR: Need to type mode (e - enc, d - dec)\n");
-	if(argc == 5)
-	{
 		FILE *f1,*f2,*f3;
 		int n,m,i,j;
 		char *temp;
 		char *smb;
-		switch(argv[4][0])
+		switch(arg[4][0])
 		{
 			case 'd':
 				break;
@@ -31,9 +22,9 @@ int main(int argc, char *argv[])
 				printf("ERROR: Need to type mode (e - enc, d - dec)\n");
 				return 0;
 		}	
-		f1 = fopen(argv[1],"r");
+		f1 = fopen(arg[1],"r");
 		n = fsize(f1);
-		f3 = fopen(argv[3],"r");
+		f3 = fopen(arg[3],"r");
 		m = fsize(f3);
 		if(m > n)
 		{
@@ -58,13 +49,13 @@ int main(int argc, char *argv[])
 				if(temp[i] >= 65 && temp[i] <= 90 || temp[i] >= 97 && temp[i] <= 122)
 				{
 					temp[i] = innum(temp[i]);
-					if(argv[4][0] == 'e')
+					if(arg[4][0] == 'e')
 					{
 						smb[i] = smb[i] + temp[i];
 						if(smb[i] > 51)
 							smb[i] -= 52;
 					}
-					else if(argv[4][0] == 'd')
+					else if(arg[4][0] == 'd')
 					{
 						smb[i] = smb[i] - temp[i];
 						if(smb[i] < 0)
@@ -75,7 +66,7 @@ int main(int argc, char *argv[])
 				smb[i] = inchar(smb[i]);
 			}
 		}
-		f2 = fopen(argv[2],"w");
+		f2 = fopen(arg[2],"w");
 		smb[n] = '\n';
 		for(i=0;i<=n;i++)
 			fprintf(f2,"%c",smb[i]);
@@ -84,7 +75,6 @@ int main(int argc, char *argv[])
 		fclose(f3);
 		fclose(f2);
 		fclose(f1);
-	}
 	return 0;
 }
 int fsize(FILE *f)
