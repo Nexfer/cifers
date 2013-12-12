@@ -2,7 +2,7 @@
 
 	gcc -c cezar.c -o cezar.o
 	gcc -c main_cezar.c -o main_cezar.o
-	gcc main_cezar.o cezar.o -o cezar
+	gcc main_cezar.o cezar.o -o cezar -lm
 
 Для Виженера:
 
