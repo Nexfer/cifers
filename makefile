@@ -1,5 +1,11 @@
 Для Цезаря:
-gcc cezar.c -o cezar
+
+	gcc -c cezar.c -o cezar.o
+	gcc -c main_cezar.c -o main_cezar.o
+	gcc main_cezar.o cezar.o -o cezar
 
 Для Виженера:
-gcc vigenere.c -o vigenere
+
+	gcc -c vigenere.c -o vigenere.o
+	gcc -c main_vigenere.c -o main_vigenere.o
+	gcc main_vigenere.o vigenere.o -o vigenere
